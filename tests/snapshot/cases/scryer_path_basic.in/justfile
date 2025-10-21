@@ -1,0 +1,7 @@
+run:
+    scryer-prolog -f main.pl -g main
+
+test: run
+
+clean:
+    rm -rf scryer_libs
