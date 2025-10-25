@@ -16,6 +16,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+      - name: Build Bakage
+        run: |
+          nix develop --ignore-env --command \
+            just build
       - name: Update tag
         run: |
           git push origin :refs/tags/main-release
@@ -27,4 +33,4 @@ jobs:
           tag_name: main-release
           draft: false
           prerelease: true
-          files: bakage.pl
+          files: ./build/bakage.pl
